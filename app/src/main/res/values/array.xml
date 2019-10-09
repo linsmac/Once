@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="Array_2">
+        <item >飲食</item>
+        <item >交通</item>
+        <item >日常生活</item>
+        <item >娛樂</item>
+        <item >醫療</item>
+        <item >其他</item>
+
+    </string-array>
+
+    <string-array name="Array_3">
+        <item >0~999</item>
+        <item >1000~4999</item>
+        <item >5000~9999</item>
+        <item >10000以上</item>
+
+
+    </string-array>
+
+
+
+</resources>
