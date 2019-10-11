@@ -146,6 +146,7 @@ public class InquireActivity extends AppCompatActivity implements
     public void onClickSelectDate(int Year, int Month) {
         if (dateStatus == DATE_START){
             dateStartTextView.setText(getSelectDate(Year, Month));
+            defaultTime = getSelectTime(Year, Month);
         } else if (dateStatus == DATE_STOP){
             if (getSelectTime(Year, Month) < defaultTime){
                 dateStopTextView.setText(dateStartTextView.getText());
