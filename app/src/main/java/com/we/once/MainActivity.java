@@ -1,6 +1,7 @@
 package com.we.once;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ImageView;
@@ -12,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.we.once.Spinner_main;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private int mYear, mMonth, mDay;
@@ -90,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView dateString = findViewById(R.id.dateTextView);//顯示日期的TextView
         CalendarView CalendarView = findViewById(R.id.calendarView);
+        dateString.setText(getDateFormat(CalendarView.getDate()));
         CalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull android.widget.CalendarView calendarView, int i, int i1, int i2) {
@@ -100,10 +105,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private String setDateFormat(int year, int monthOfYear, int dayOfMonth) {
-        return String.valueOf(year) + "-"
-                + String.valueOf(monthOfYear + 1) + "-"
-                + String.valueOf(dayOfMonth);
+    private String getDateFormat(long time) {
+        Date curDate = new Date(time);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日");
+        return formatter.format(curDate);
     }
 
 
