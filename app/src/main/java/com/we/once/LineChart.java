@@ -79,6 +79,21 @@ public class LineChart extends AppCompatActivity {
 
         });
 
+        ImageView leftpg = (ImageView)findViewById(R.id.left);
+        leftpg.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent4 = new Intent();
+                intent4.setClass(LineChart.this,CheckView.class);
+                startActivity(intent4);
+            }
+
+
+        });
 
 
         LineChartView lineChartView = findViewById(R.id.chart);

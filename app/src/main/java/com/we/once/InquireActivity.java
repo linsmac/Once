@@ -1,5 +1,6 @@
 package com.we.once;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModel;
 
@@ -9,10 +10,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.we.once.dialog.DialogDatePicker;
 import com.we.once.dialog.DialogDatePickerListener;
 
@@ -32,7 +36,9 @@ public class InquireActivity extends AppCompatActivity implements
     private int dateStatus;
     private final int DATE_START = 1;
     private final int DATE_STOP = 2;
-    private long defaultTime;
+    private long defaultStartTime;
+    private long defaultStopTime;
+    private final int REQUEST_CODE = 1;
 
 
     @Override
@@ -52,13 +58,13 @@ public class InquireActivity extends AppCompatActivity implements
         dateStopTextView = findViewById(R.id.textViewDateStop);
         dateStopTextView.setOnClickListener(this);
 
-        ImageView addPageBtn = (ImageView) findViewById(R.id.imageView7);
+        /*ImageView addPageBtn = (ImageView) findViewById(R.id.imageView7);
+
         addPageBtn.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
-
 
                 Intent intent3 = new Intent();
                 intent3.setClass(InquireActivity.this, AddView.class);
@@ -68,7 +74,7 @@ public class InquireActivity extends AppCompatActivity implements
 
         });
 
-
+*/
         Button PageBtn = (Button) findViewById(R.id.button5);
         PageBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -78,7 +84,7 @@ public class InquireActivity extends AppCompatActivity implements
 
 
                 Intent intent1 = new Intent();
-                intent1.setClass(InquireActivity.this, CheckView.class);
+                intent1.setClass(InquireActivity.this, ListChange.class);
                 startActivity(intent1);
             }
 
@@ -122,7 +128,8 @@ public class InquireActivity extends AppCompatActivity implements
 
     private String getDate(){
         Date curDate = new Date();
-        defaultTime = curDate.getTime();
+        defaultStartTime = curDate.getTime();
+        defaultStopTime = curDate.getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月");
         return formatter.format(curDate);
     }
@@ -146,10 +153,18 @@ public class InquireActivity extends AppCompatActivity implements
     public void onClickSelectDate(int Year, int Month) {
         if (dateStatus == DATE_START){
             dateStartTextView.setText(getSelectDate(Year, Month));
-            defaultTime = getSelectTime(Year, Month);
+            defaultStartTime = getSelectTime(Year, Month);
+            if (getSelectTime(Year, Month) > defaultStopTime){
+                dateStopTextView.setText(getSelectDate(Year, Month));
+                Toast.makeText(this, "開始時間需比結束時間小，請重新選擇。", Toast.LENGTH_LONG).show();
+
+            }
         } else if (dateStatus == DATE_STOP){
-            if (getSelectTime(Year, Month) < defaultTime){
+            defaultStopTime = getSelectTime(Year, Month);
+            if (getSelectTime(Year, Month) < defaultStartTime){
                 dateStopTextView.setText(dateStartTextView.getText());
+                Toast.makeText(this, "結束時間需比開始時間大，請重新選擇。", Toast.LENGTH_LONG).show();
+
             } else {
                 dateStopTextView.setText(getSelectDate(Year, Month));
             }
@@ -166,4 +181,14 @@ public class InquireActivity extends AppCompatActivity implements
             dialogDatePicker.show();
         }
     }
+
+    public void openQRcode(View view) {
+        Intent intent = new Intent(InquireActivity.this, CaptureActivity.class);
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+
+
+
 }
+

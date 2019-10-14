@@ -1,6 +1,8 @@
 package com.we.once;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +23,7 @@ import com.we.once.Spinner_main;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import androidx.core.app.ActivityCompat;
 
 public class MainActivity extends AppCompatActivity {
     private int mYear, mMonth, mDay;
@@ -37,7 +40,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getPermissionsCamera();
         findView();
+
+    }
+    public void   getPermissionsCamera(){
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},1);
+
+        }
+
     }
 
     public void findView() {
@@ -62,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         ImageView inquirePageBtn = (ImageView) findViewById(R.id.inquire);
+
         inquirePageBtn.setOnClickListener(new View.OnClickListener() {
 
 

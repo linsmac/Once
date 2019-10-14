@@ -12,10 +12,12 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+
 public class AddView extends AppCompatActivity {
 
     private EditText money;
-
+    private final int REQUEST_CODE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,5 +109,9 @@ public class AddView extends AppCompatActivity {
 
         // String dateString=getIntent().getStringExtra("DATE");
         //date.setText(dateString);
+    }
+    public void openQRcode(View view) {
+        Intent intent = new Intent(AddView.this, CaptureActivity.class);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 }
