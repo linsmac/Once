@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
@@ -21,6 +22,13 @@ import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.we.once.Spinner_main;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import androidx.core.app.ActivityCompat;
@@ -42,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getPermissionsCamera();
         findView();
+       // qrcodeA("");
 
     }
     public void   getPermissionsCamera(){
@@ -75,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         ImageView inquirePageBtn = (ImageView) findViewById(R.id.inquire);
-
         inquirePageBtn.setOnClickListener(new View.OnClickListener() {
 
 
@@ -121,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         CalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull android.widget.CalendarView calendarView, int i, int i1, int i2) {
-                dateString.setText(+i + "年" + i1 + "月" + i2 + "日");
+                dateString.setText(+i + "-" + i1 + "-" + i2 );
 
             }
         });
@@ -135,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String getDateFormat(long time) {
         Date curDate = new Date(time);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         return formatter.format(curDate);
     }
 
@@ -150,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    qrcode(result);
+
+
                     Intent intent = new Intent();
                     intent.setAction("android.intent.action.VIEW");
 //                    Uri content_url = Uri.parse(result.toString());
@@ -165,6 +176,53 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+/*
+    public void qrcodeA(String qrcodestring){
+        String test = "UQ4865549810810044400000000320000003200000032843067709/QXXDRKBaf7qwugjrXwXw==:**********:2:3:1:C美式辣雞堡:1:22:C可樂_小:1:28:";
+         try {
+            Log.v("塞塞", "str =" + URLEncoder.encode(test, "UTF-8")); //要把傳進來的資料重新編碼)
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+    }*/
+
+    public void qrcode(String qrcodestring){
+        try {
+
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);//可網路連線
+
+            //String st=.getText().toString();
+            // Toast.makeText(this,userid.getText().toString(),Toast.LENGTH_LONG).show();
+             String encodedURL = URLEncoder.encode(qrcodestring, "UTF-8"); //要把傳進來的資料重新編碼
+
+            String urll="http://10.10.2.122:8080/eInv/ScanQrcode?str="+qrcodestring+encodedURL;
+            Toast.makeText(this,urll,Toast.LENGTH_LONG).show();
+            URL url=new URL(urll);
+            URLConnection conn=url.openConnection();
+            InputStream is= conn.getInputStream();
+            InputStreamReader rd= new InputStreamReader(is,"UTF-8");
+            BufferedReader br=new BufferedReader(rd);
+            String str="";
+            String temp="'";
+            while ((temp=br.readLine())!=null) {
+                str+=temp;
+
+            }
+            Toast.makeText(this,str,Toast.LENGTH_LONG).show();
+
+
+        }
+
+        catch(Exception ex){
+            Log.e("urll",ex.getMessage());
+        }
+
+    }
+
 
 
 }
+
+

@@ -80,4 +80,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView23"
         app:layout_constraintEnd_toStartOf="@+id/linechart4"
         app:layout_constraintTop_toTopOf="@+id/imageView23" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="398dp"
+        android:layout_height="534dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="129dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

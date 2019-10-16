@@ -168,6 +168,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="27dp"
         android:background="#BFAEDCE2"
+
         android:text="新增"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/guideline11"
@@ -244,6 +245,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.27980536" />
+        app:layout_constraintGuide_begin="115dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

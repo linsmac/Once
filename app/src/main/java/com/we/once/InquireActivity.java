@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -49,6 +50,7 @@ public class InquireActivity extends AppCompatActivity implements
         dialogDatePicker.setDialogDatePickerListener(this);
         findView();
     }
+
 
     public void findView() {
         spinner1 = (Spinner) this.findViewById(R.id.spinner1);
@@ -119,6 +121,20 @@ public class InquireActivity extends AppCompatActivity implements
         adapter_spinner2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //String spiner1=String.valueOf(adapterView.getSelectedItem());
+                //Toast.makeText(InquireActivity.this, spiner1,Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 //自訂下拉式選單風格
         spinner1.setAdapter(adapter_spinner);
         spinner2.setAdapter(adapter_spinner2);
@@ -130,7 +146,7 @@ public class InquireActivity extends AppCompatActivity implements
         Date curDate = new Date();
         defaultStartTime = curDate.getTime();
         defaultStopTime = curDate.getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
         return formatter.format(curDate);
     }
 
@@ -138,7 +154,7 @@ public class InquireActivity extends AppCompatActivity implements
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, Year);
         calendar.set(Calendar.MONTH, Month -1);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM");
         return formatter.format(calendar.getTime());
     }
 
