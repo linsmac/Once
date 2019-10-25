@@ -5,8 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +33,53 @@ public class RecyclervVew extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MyAdapter(this, getData()));
+
+
+        ImageView linepg = (ImageView)findViewById(R.id.linechart4);
+        linepg.setOnClickListener(new View.OnClickListener() {
+
+
+
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent4 = new Intent();
+                intent4.setClass(RecyclervVew.this,LineChart.class);
+                startActivity(intent4);
+            }
+
+
+        });
+
+
+
+
+        ImageView piepg = (ImageView)findViewById(R.id.piechart3);
+        piepg.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+
+
+                Intent intent3 = new Intent();
+                intent3.setClass(RecyclervVew.this,CheckView.class);
+                startActivity(intent3);
+            }
+
+
+        });
+
     }
+
+
+
+
+
+
+
+
 
     private List<PostModel> getData() {
         List<PostModel> onceDataList = new ArrayList<>();
