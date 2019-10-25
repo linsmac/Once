@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ListChange"></activity>
+        <activity android:name=".RecyclervVew"></activity>
+        <activity android:name=".ListChange" />
         <activity android:name=".LineChart" />
         <activity android:name=".CheckView" />
         <activity android:name=".Conn" />

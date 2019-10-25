@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         CalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull android.widget.CalendarView calendarView, int i, int i1, int i2) {
-                dateString.setText(+i + "-" + i1 + "-" + i2 );
+                dateString.setText(+i + "-" + (i1+1) + "-" + i2 );
 
             }
         });
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
-                    qrcode(result);
+                   // qrcode(result);
 
 
                     Intent intent = new Intent();
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
     }*/
 
-    public void qrcode(String qrcodestring){
+    /*public void qrcode(String qrcodestring){
         try {
 
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
+*/
 
 
 }

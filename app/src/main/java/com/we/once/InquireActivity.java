@@ -86,7 +86,7 @@ public class InquireActivity extends AppCompatActivity implements
 
 
                 Intent intent1 = new Intent();
-                intent1.setClass(InquireActivity.this, ListChange.class);
+                intent1.setClass(InquireActivity.this,RecyclervVew.class);
                 startActivity(intent1);
             }
 
@@ -121,7 +121,7 @@ public class InquireActivity extends AppCompatActivity implements
         adapter_spinner2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 //String spiner1=String.valueOf(adapterView.getSelectedItem());
@@ -133,7 +133,7 @@ public class InquireActivity extends AppCompatActivity implements
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
-        });
+        });*/
 
 //自訂下拉式選單風格
         spinner1.setAdapter(adapter_spinner);
@@ -205,6 +205,6 @@ public class InquireActivity extends AppCompatActivity implements
 
 
 
-
 }
+
 

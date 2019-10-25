@@ -99,7 +99,7 @@ public class LineChart extends AppCompatActivity {
         LineChartView lineChartView = findViewById(R.id.chart);
 
         String[] axisData = {"飲食", "交通", "生活用品", "䱷樂", "醫療", "其他"};
-        int[] yAxisData = {50, 200, 600, 120, 40, 100 };
+        int[] yAxisData = {200, 20, 300, 200, 200, 100 };
         List yAxisValues = new ArrayList();
         List axisValues = new ArrayList();
        // Line line = new Line(yAxisValues);

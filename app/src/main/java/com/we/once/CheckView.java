@@ -29,12 +29,12 @@ public class CheckView extends AppCompatActivity {
 
         List<SliceValue> pieData = new ArrayList<>();
 
-        pieData.add(new SliceValue(25,getResources().getColor(R.color.c1,null)).setLabel("飲食"));
-        pieData.add(new SliceValue(57,getResources().getColor(R.color.c2,null)).setLabel("交通"));
-        pieData.add(new SliceValue(22,getResources().getColor(R.color.c3,null)).setLabel("日常生活"));
-        pieData.add(new SliceValue(80,getResources().getColor(R.color.c4,null)).setLabel("娛樂"));
-        pieData.add(new SliceValue(100,getResources().getColor(R.color.c5,null)).setLabel("醫療"));
-        pieData.add(new SliceValue(15,getResources().getColor(R.color.c6,null)).setLabel("其他"));
+        pieData.add(new SliceValue(200,getResources().getColor(R.color.c1,null)).setLabel("飲食"));
+        pieData.add(new SliceValue(20,getResources().getColor(R.color.c2,null)).setLabel("交通"));
+        pieData.add(new SliceValue(300,getResources().getColor(R.color.c3,null)).setLabel("日常生活"));
+        pieData.add(new SliceValue(200,getResources().getColor(R.color.c4,null)).setLabel("娛樂"));
+        pieData.add(new SliceValue(200,getResources().getColor(R.color.c5,null)).setLabel("醫療"));
+        pieData.add(new SliceValue(100,getResources().getColor(R.color.c6,null)).setLabel("其他"));
 
         PieChartData pieChartData = new PieChartData(pieData);
 
